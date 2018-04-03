@@ -55,9 +55,6 @@ names(data_mean_and_std)<-gsub("Mag", "Magnitude", names(data_mean_and_std))
 names(data_mean_and_std)<-gsub("BodyBody", "Body", names(data_mean_and_std)) # correct typo
 
 #  creates a second, independent tidy data set with the average of each variable for each activity and each subject.
-#tidy_data <- aggregate(. ~ subject + activity, data_mean_and_std, mean)
-#tidy_data <- tidy_data[order(tidy_data$subject, tidy_data$activity),]
-
 library(reshape2)
 data_mean_and_std.melted <- melt(data_mean_and_std, id = c("subject", "activity"))
 tidy_data <- dcast(data_mean_and_std.melted, subject + activity ~ variable, mean)
